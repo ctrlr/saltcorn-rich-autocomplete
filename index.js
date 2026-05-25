@@ -13,7 +13,7 @@ const db = require("@saltcorn/data/db");
 const Table = require("@saltcorn/data/models/table");
 const Form = require("@saltcorn/data/models/form");
 const { input, div, script, style, a, i } = require("@saltcorn/markup/tags");
-
+const Workflow = require("@saltcorn/data/models/workflow");
 const plugin_name = "saltcorn-rich-autocomplete";
 
 function esc(s) {
@@ -86,18 +86,26 @@ const routes = (() => {
 })();
 
 function configuration_workflow() {
-  return new Form({
-    fields: [
-      { name: "table_name", label: "Table name", type: "String", required: true, sublabel: "Example: videos" },
-      { name: "search_field", label: "Field to search", type: "String", required: true, sublabel: "Example: title" },
-      { name: "title_field", label: "Title field", type: "String", required: true, sublabel: "Example: title" },
-      { name: "thumb_field", label: "Thumbnail/image field", type: "String", sublabel: "Example: poster_image" },
-      { name: "subtitle_field", label: "Subtitle field", type: "String", sublabel: "Example: description, creator, category" },
-      { name: "meta_field", label: "Meta field", type: "String", sublabel: "Example: avg_rounded or duration_seconds" },
-      { name: "link_pattern", label: "Link pattern", type: "String", required: true, default: "/page/stage?id={{id}}", sublabel: "Use {{id}} or any selected field, e.g. /page/stage?id={{id}}" },
-      { name: "placeholder", label: "Placeholder", type: "String", default: "Search..." },
-      { name: "result_limit", label: "Result limit", type: "Integer", default: 8 },
-      { name: "min_chars", label: "Minimum characters before search", type: "Integer", default: 2 }
+  return new Workflow({
+    steps: [
+      {
+        name: "Search settings",
+        form: async () =>
+          new Form({
+            fields: [
+              { name: "table_name", label: "Table name", type: "String", required: true, default: "videos" },
+              { name: "search_field", label: "Field to search", type: "String", required: true, default: "title" },
+              { name: "title_field", label: "Title field", type: "String", required: true, default: "title" },
+              { name: "thumb_field", label: "Thumbnail/image field", type: "String", default: "poster_image" },
+              { name: "subtitle_field", label: "Subtitle field", type: "String" },
+              { name: "meta_field", label: "Meta field", type: "String", default: "avg_rounded" },
+              { name: "link_pattern", label: "Link pattern", type: "String", required: true, default: "/page/stage?id={{id}}" },
+              { name: "placeholder", label: "Placeholder", type: "String", default: "Search..." },
+              { name: "result_limit", label: "Result limit", type: "Integer", default: 8 },
+              { name: "min_chars", label: "Minimum characters before search", type: "Integer", default: 2 }
+            ]
+          })
+      }
     ]
   });
 }
