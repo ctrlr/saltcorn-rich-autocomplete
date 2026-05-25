@@ -1,0 +1,14 @@
+{
+  "name": "saltcorn-rich-autocomplete",
+  "version": "0.1.0",
+  "description": "Configurable rich autocomplete search view for Saltcorn with thumbnails and metadata.",
+  "main": "index.js",
+  "dependencies": {
+    "@saltcorn/data": "latest",
+    "@saltcorn/markup": "latest",
+    "express-promise-router": "latest"
+  },
+  "author": "Richard Battle / ChatGPT starter",
+  "license": "MIT",
+  "publishConfig": { "access": "public" }
+}
