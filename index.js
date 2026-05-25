@@ -149,7 +149,7 @@ const richAutocompleteView = {
           let timer = null;
           let last = '';
           const minChars = ${JSON.stringify(minChars)};
-          const endpoint = '/plugins/${plugin_name}/search/search';
+          const endpoint = "/plugins/saltcorn-rich-autocomplete/search";
           const params = new URLSearchParams({
             table: ${JSON.stringify(tableName)},
             search_field: ${JSON.stringify(searchField)},
