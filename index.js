@@ -112,8 +112,8 @@ function configuration_workflow() {
 
 const richAutocompleteView = {
   name: "Rich Autocomplete Search",
-  configuration_workflow,
-  get_state_fields: () => [],
+  display_state_form: false,
+  configuration_workflow: configuration_workflow,
   run: async (table_id, viewname, cfg) => {
     const id = `sc-rich-search-${Math.random().toString(36).slice(2)}`;
     const tableName = esc(cfg.table_name || "");
