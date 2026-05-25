@@ -202,7 +202,7 @@ const richAutocompleteView = {
 
 module.exports = {
   sc_plugin_api_version: 1,
-  plugin_name,
+  plugin_name: "saltcorn-rich-autocomplete",
   viewtemplates: [richAutocompleteView],
-  routes: [{ prefix: "/search", router: routes }]
+  routes: { search: routes }
 };
