@@ -141,7 +141,7 @@ const richAutocompleteView = {
           let timer = null;
           let last = '';
           const minChars = ${JSON.stringify(minChars)};
-          const endpoint = '/plugins/${plugin_name}/search';
+          const endpoint = '/plugins/${plugin_name}/search/search';
           const params = new URLSearchParams({
             table: ${JSON.stringify(tableName)},
             search_field: ${JSON.stringify(searchField)},
@@ -196,5 +196,5 @@ module.exports = {
   sc_plugin_api_version: 1,
   plugin_name,
   viewtemplates: [richAutocompleteView],
-  routes
+  routes: [{ prefix: "/search", router: routes }]
 };
